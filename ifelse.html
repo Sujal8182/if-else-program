@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Menu Driven Program</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      height: 100vh;
+      background: linear-gradient(135deg, #f0f4ff, #d9e4f5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      background: #ffffffcc;
+      padding: 30px 25px;
+      border-radius: 16px;
+      width: 350px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 22px;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    select, input[type="text"], button {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      margin-bottom: 15px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      transition: 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    #result {
+      margin-top: 15px;
+      font-size: 18px;
+      color: #444;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Menu Driven Program</h1>
+    <select id="menu">
+      <option value="0">-- Select Operation --</option>
+      <option value="1">Even or Odd</option>
+      <option value="2">Factorial</option>
+      <option value="3">Reverse String</option>
+      <option value="4">Exit</option>
+    </select>
+    <input type="text" id="userInput" placeholder="Enter value here">
+    <button onclick="process()">Submit</button>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    function process() {
+      let choice = document.getElementById("menu").value;
+      let input = document.getElementById("userInput").value;
+      let result = document.getElementById("result");
+
+      if (choice == "1") {
+        let num = input;
+        if (isNaN(num)) {
+          result.innerText = "Please enter a valid number.";
+        } else if (num % 2 == 0) {
+          result.innerText = num + " is Even.";
+        } else {
+          result.innerText = num + " is Odd.";
+        }
+      }
+      else if (choice == "2") {
+        let num = input;
+        if (isNaN(num) || num < 0) {
+          result.innerText = "Enter a non-negative number.";
+        } else {
+          let fact = 1;
+          for (let i = 1; i <= num; i++) {
+            fact = fact * i;
+          }
+          result.innerText = "Factorial of " + num + " is " + fact;
+        }
+      }
+      else if (choice == "3") {
+        let text = input;
+        let reversed = "";
+        for (let i = text.length - 1; i >= 0; i--) {
+          reversed += text[i];
+        }
+        result.innerText = "Reversed String: " + reversed;
+      }
+      else if (choice == "4") {
+        result.innerText = "Exiting... (Just clear input 😄)";
+        document.getElementById("userInput").value = "";
+        document.getElementById("menu").value = "0";
+      }
+      else {
+        result.innerText = "Please select a valid option.";
+      }
+    }
+  </script>
+</body>
+</html>
